@@ -1,3 +1,6 @@
+WARNING: This was vibe coded with very little human written code.
+Use at your own risk.
+
 # Podstat
 
 A CLI tool to fetch and display podcast statistics from YouTube and Transistor.fm, with support for time series database formats.
