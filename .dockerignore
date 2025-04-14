@@ -1,0 +1,35 @@
+# Git
+.git
+.gitignore
+
+# Build artifacts
+podstat
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Credentials (don't include in image build)
+*.pem
+*.key
+secrets/
+
+# Temp files
+*.tmp
+*.log
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
