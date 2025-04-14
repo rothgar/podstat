@@ -1,0 +1,43 @@
+version: "3"
+
+networks:
+  monitoring:
+    driver: bridge
+
+services:
+  victoriametrics:
+    image: victoriametrics/victoria-metrics:latest
+    ports:
+      - "8428:8428"
+    volumes:
+      - vm-data:/storage
+    command:
+      - "--storageDataPath=/storage"
+      - "--httpListenAddr=:8428"
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+      # Automatically configure VictoriaMetrics datasource
+      - GF_DATASOURCES_DATASOURCES_YML=/etc/grafana/provisioning/datasources/victoriametrics.yaml
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    networks:
+      - monitoring
+    depends_on:
+      - victoriametrics
+    restart: unless-stopped
+
+volumes:
+  vm-data:
+  grafana-data:
+
