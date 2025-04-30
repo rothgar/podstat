@@ -1,4 +1,4 @@
-WARNING: This was vibe coded with very little human written code.
+![](https://img.shields.io/badge/Vibe-Coded-blue) WARNING: This was vibe coded with very little human written code.
 Use at your own risk.
 
 # Podstat
